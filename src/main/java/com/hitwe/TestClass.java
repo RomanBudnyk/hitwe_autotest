@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class TestClass extends Setup {
@@ -18,7 +19,7 @@ public class TestClass extends Setup {
         driver.findElementByXPath("//*[@alt = 'Темные']").click();
         driver.findElementByXPath("//*[@alt = 'Стройная']").click();
         driver.findElementByXPath("//*[@data-test = 'qa-name']").sendKeys("test");
-        driver.findElementByXPath("//*[@data-test = 'qa-email']").sendKeys("4ssassdsdfdsdf646@testmail.com");
+        driver.findElementByXPath("//*[@data-test = 'qa-email']").sendKeys("76sdsdfdsdf646@testmail.com");
         driver.findElementByXPath("//*[@data-test = 'qa-gender']").click();
         driver.findElementByXPath("//*[@value = 'm']").click();
         driver.findElementByXPath("//*[@data-test = 'qa-age']").click();
@@ -40,21 +41,30 @@ public class TestClass extends Setup {
         driver.findElementByXPath("//*[@class = 'enable-push-notifications btn blue']").click();
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.FrameLayout[@resource-id=‘android:id/button1’]"))).click();
 //        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        driver.context("NATIVE_APP");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/button1"))).click();
+        driver.context("CHROMIUM");
+//
 //        driver.findElementByXPath("//android.widget.FrameLayout[@resource-id=‘android:id/button1’]").click();
-        driver.switchTo().activeElement();
-        driver.findElementById("android:id/button1").click();
+//
+//        driver.switchTo().activeElement();
+//        driver.findElementById("android:id/button1").click();
 
 
 
 //        ((AndroidDriver) driver).findElement(By.id("android:id/button1")).click();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/button1"))).click();
 //        wait.until(ExpectedConditions.alertIsPresent());
 //        driver.switchTo().alert().accept();
+    }
+
+    @Test
+    public void check() {
+        String webContext = driver.getContext();
+        Set<String> contexts = driver.getContextHandles();
+        for (String context: contexts){
+            System.out.println(context);
+        }
     }
 
 }
