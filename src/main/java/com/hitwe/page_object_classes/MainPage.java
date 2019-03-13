@@ -6,8 +6,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage extends PageObject{
     private By visitor_tab = By.xpath("//*[@qa-header-visitors]");
-    public By accept_notif = By.xpath("//*[@class = 'enable-push-notifications btn blue']");
-    public By android_accept_notif_= By.id("android:id/button1");
+    public By accept_notification = By.xpath("//*[@class = 'enable-push-notifications btn blue']");
+    public By android_accept_notification = By.id("android:id/button1");
 
     public MainPage(AppiumDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -17,7 +17,7 @@ public class MainPage extends PageObject{
         driver.findElement(visitor_tab).click();
     }
 
-    public void acceptNotif() {
-        driver.findElement(accept_notif).click();
+    public void acceptNotification() {
+        driver.findElement(accept_notification).click();
     }
 }

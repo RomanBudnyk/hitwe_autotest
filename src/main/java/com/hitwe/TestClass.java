@@ -34,12 +34,12 @@ public class TestClass extends Setup{
         do {
             driver.context(CHROMIUM);
             mainPage.clickOnVisitorTab();
-        } while (!(wait.until(ExpectedConditions.visibilityOfElementLocated(mainPage.accept_notif))).isDisplayed());
-        mainPage.acceptNotif();
+        } while (!(wait.until(ExpectedConditions.visibilityOfElementLocated(mainPage.accept_notification))).isDisplayed());
+        mainPage.acceptNotification();
         driver.context(NATIVE_APP);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(mainPage.android_accept_notif_)).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(mainPage.android_accept_notification)).click();
         driver.context(CHROMIUM);
-        assertTrue(!(driver.findElement(mainPage.accept_notif).isDisplayed()));
+        assertTrue(!(driver.findElement(mainPage.accept_notification).isDisplayed()));
         System.out.println("User was successfully registered and subscribed to push notifications.");
     }
 }
