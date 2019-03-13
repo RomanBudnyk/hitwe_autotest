@@ -2,11 +2,10 @@ package com.hitwe;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
@@ -15,10 +14,8 @@ import java.net.URL;
 
 public class Setup {
     private DesiredCapabilities capabilities;
-    public AppiumDriver<MobileElement> driver;
-    public WebDriverWait wait;
-    public TouchAction action;
-
+    AppiumDriver<MobileElement> driver;
+    WebDriverWait wait;
 
     @BeforeClass
     public void initialize() {
@@ -32,8 +29,12 @@ public class Setup {
 
     @BeforeMethod
     public void initDriver() throws MalformedURLException {
-        driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
         wait = new WebDriverWait(driver, 7);
-        driver.get("https://m.hitwe.com/landing/inter?p=15276");
+    }
+
+    @AfterMethod
+    public void closeDriver() {
+        driver.quit();
     }
 }
